@@ -73,22 +73,21 @@ These instructions demonstrate arithmetic, logical, and branch operations.
 
 mips32-5stage-pipelined-processor
 │
-├── rtl/                # Verilog RTL design files
-│   ├── processor.v
+├── rtl
+│   ├── mips32_top.v
 │   ├── if_stage.v
 │   ├── id_stage.v
 │   ├── ex_stage.v
 │   ├── mem_stage.v
 │   └── wb_stage.v
 │
-├── testbench/          # Simulation testbench
-│   └── processor_tb.v
+├── testbench
+│   └── mips32_tb.v
 │
-├── docs/               # Architecture diagrams or documentation
-│   └── pipeline_architecture.png
+├── docs
+│   └── pipeline_diagram.png
 │
-├── README.md           # Project documentation
-└── LICENSE
+└── README.md
 
 
 ---
