@@ -47,4 +47,4 @@ R5 - 55
 
 Simulation waveform showing pipeline operation:
 
-![Waveform](simulation_waveform.png)
+![Waveform](simulation_waveform.jpeg)
