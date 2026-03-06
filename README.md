@@ -1,13 +1,15 @@
 # 5-Stage Pipelined MIPS32 Processor (Verilog)
 
-This project implements a **5-stage pipelined RISC processor** similar to the MIPS32 architecture using **Verilog HDL**.  
-The processor is designed using **RTL design principles** and simulated to demonstrate instruction execution through pipeline stages.
+This project implements a **5-stage pipelined RISC processor** inspired by the **MIPS32 architecture** using **Verilog HDL**.  
+The processor demonstrates **instruction pipelining, ALU operations, and branch execution** through RTL design and simulation.
+
+The design follows the classical **MIPS pipeline architecture** and is simulated using **ModelSim / Vivado**.
 
 ---
 
-## Architecture Overview
+# Architecture Overview
 
-The processor follows a classic **5-stage pipeline architecture**:
+The processor uses a **5-stage pipeline** to improve instruction throughput.
 
 1. **IF – Instruction Fetch**
 2. **ID – Instruction Decode**
@@ -15,114 +17,129 @@ The processor follows a classic **5-stage pipeline architecture**:
 4. **MEM – Memory Access**
 5. **WB – Write Back**
 
-Each stage is separated by **pipeline registers**:
+Each stage communicates through **pipeline registers**:
 
 - IF/ID
 - ID/EX
 - EX/MEM
 - MEM/WB
 
-This allows multiple instructions to be processed simultaneously in different pipeline stages.
+This allows **multiple instructions to execute simultaneously** in different pipeline stages.
 
 ---
 
-## Pipeline Stages
+# Pipeline Stages
 
-### 1. Instruction Fetch (IF)
-- Fetch instruction from instruction memory
-- Update Program Counter (PC)
-- Store instruction in IF/ID register
+## Instruction Fetch (IF)
+- Fetch instruction from memory
+- Update the Program Counter (PC)
+- Store instruction in the IF/ID pipeline register
 
-### 2. Instruction Decode (ID)
-- Decode instruction fields
-- Read operands from register file
-- Perform sign extension for immediate values
+## Instruction Decode (ID)
+- Decode instruction opcode
+- Read operands from the register file
+- Perform **sign extension** for immediate values
 
-### 3. Execute (EX)
+## Execute (EX)
 - Perform ALU operations
-- Compute arithmetic and logical results
+- Execute arithmetic and logical instructions
 - Evaluate branch conditions
 
-### 4. Memory Access (MEM)
-- Perform load/store operations
+## Memory Access (MEM)
+- Perform **load/store operations**
 - Access data memory
 
-### 5. Write Back (WB)
-- Write results back to register file
+## Write Back (WB)
+- Write computed results back to the register file
 
 ---
 
-## Supported Instructions
+# Supported Instructions
 
-The processor currently supports the following operations:
-
+### Arithmetic Instructions
 - ADD
 - SUB
+- MUL
+
+### Logical Instructions
 - AND
 - OR
 - SLT
-- MUL
+
+### Immediate Instructions
+- ADDI
+- SUBI
+- SLTI
+
+### Memory Instructions
+- LW
+- SW
+
+### Branch Instructions
 - BEQZ
 - BNEQZ
 
-These instructions demonstrate arithmetic, logical, and branch operations.
+### Control Instruction
+- HLT
 
 ---
 
-## Project Structure
+# Project Structure
 
-mips32-5stage-pipelined-processor
+mips32-pipelined-processor
 │
-├── rtl
-│   ├── mips32_top.v
-│   ├── if_stage.v
-│   ├── id_stage.v
-│   ├── ex_stage.v
-│   ├── mem_stage.v
-│   └── wb_stage.v
-│
-├── testbench
-│   └── mips32_tb.v
-│
-├── docs
-│   └── pipeline_diagram.png
-│
-└── README.md
+├── pipe_MIPS32.v # Main processor RTL implementation
+├── test_mips32.sv # Testbench for simulation
+├── README.md
+└── LICENSE
 
 
 ---
 
-## Tools Used
+# Simulation
 
-- **Verilog HDL**
-- **ModelSim / Vivado Simulator**
-- **RTL Simulation**
+The processor can be simulated using **ModelSim or Vivado**.
+
+### Compile
+
+vlog pipe_MIPS32.v
+vlog test_mips32.sv
+
+
+### Run Simulation
+
+vsim test_mips32
+run -all
+
+
+Waveforms can be viewed using **VCD dump files**.
 
 ---
 
-## Key Concepts Demonstrated
+# Key Concepts Demonstrated
 
-- RTL Design
-- Processor Architecture
+- RTL Processor Design
+- 5-Stage Instruction Pipeline
 - Pipeline Registers
 - Branch Handling
 - ALU Design
 - Verilog Hardware Modeling
+- Simulation and Verification
 
 ---
 
-## Future Improvements
+# Future Improvements
 
-- Implement hazard detection
-- Add data forwarding
-- Expand instruction set
-- Improve testbench coverage
+- Hazard detection unit
+- Data forwarding
+- Pipeline stall control
+- Expanded instruction set
+- Improved verification coverage
 
 ---
 
-## Author
+# Author
 
-J Isaac Varshath Joshua  
+**J Isaac Varshath Joshua**  
+Electronics and Communication Engineering  
 VIT Vellore
-Electronics and Communication Engineering
-
